@@ -34,15 +34,15 @@ Scholarline CV 只有一条原则：**一切皆插件**（Everything is a plugin
 
 | 默认 | `section: margin-section` |
 |---|---|
-| ![默认](../assets/images/default.png) | ![左侧栏章节](../assets/images/margin-section.png) |
+| ![默认](../assets/images/default.svg) | ![左侧栏章节](../assets/images/margin-section.svg) |
 | **`links: underline-links`** | **`margin-section` + `underline-links`** |
-| ![下划线链接](../assets/images/underline-links.png) | ![左侧栏章节 + 下划线链接](../assets/images/margin-section-underline-links.png) |
+| ![下划线链接](../assets/images/underline-links.svg) | ![左侧栏章节 + 下划线链接](../assets/images/margin-section-underline-links.svg) |
 | **中文，默认** | **中文，`margin-section`** |
-| ![中文默认](../assets/images/zh-default.png) | ![中文左侧栏章节](../assets/images/zh-margin-section.png) |
+| ![中文默认](../assets/images/zh-default.svg) | ![中文左侧栏章节](../assets/images/zh-margin-section.svg) |
 
 `examples/custom-links.typ` 中的自定义插件：新增图标、自定义组件、A4 纸张和左对齐页眉。
 
-![自定义插件](../assets/images/custom-plugins.png)
+![自定义插件](../assets/images/custom-plugins.svg)
 
 ## 1. 换成内置备选
 

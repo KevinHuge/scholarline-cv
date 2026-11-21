@@ -8,7 +8,7 @@ Monochrome, typography-led, and quiet: Inter, a grayscale palette, small upperca
 
 | Default | `margin-section` plugin | Chinese |
 |---|---|---|
-| ![Default layout](assets/images/default.png) | ![Margin section plugin](assets/images/margin-section.png) | ![Chinese CV](assets/images/zh-default.png) |
+| ![Default layout](assets/images/default.svg) | ![Margin section plugin](assets/images/margin-section.svg) | ![Chinese CV](assets/images/zh-default.svg) |
 
 More combinations are shown in the [plugin guide](docs/PLUGINS.md#gallery).
 

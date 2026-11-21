@@ -33,15 +33,15 @@ Every combination of the built-in plugins, rendered from `main.typ` and `example
 
 | Default | `section: margin-section` |
 |---|---|
-| ![Default](../assets/images/default.png) | ![Margin section](../assets/images/margin-section.png) |
+| ![Default](../assets/images/default.svg) | ![Margin section](../assets/images/margin-section.svg) |
 | **`links: underline-links`** | **`margin-section` + `underline-links`** |
-| ![Underline links](../assets/images/underline-links.png) | ![Margin section and underline links](../assets/images/margin-section-underline-links.png) |
+| ![Underline links](../assets/images/underline-links.svg) | ![Margin section and underline links](../assets/images/margin-section-underline-links.svg) |
 | **Chinese, default** | **Chinese, `margin-section`** |
-| ![Chinese default](../assets/images/zh-default.png) | ![Chinese margin section](../assets/images/zh-margin-section.png) |
+| ![Chinese default](../assets/images/zh-default.svg) | ![Chinese margin section](../assets/images/zh-margin-section.svg) |
 
 Custom plugins from `examples/custom-links.typ`: an extra icon, a custom component, A4 paper, and a left-aligned header.
 
-![Custom plugins](../assets/images/custom-plugins.png)
+![Custom plugins](../assets/images/custom-plugins.svg)
 
 ## 1. Switch to a built-in alternative
 

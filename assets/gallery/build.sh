@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Renders every built-in plugin combination of the sample CVs to PNG.
+# Renders every built-in plugin combination of the sample CVs to SVG (sharp at any size).
 # Usage: assets/gallery/build.sh [output-dir] [extra typst args]
 # Default output: assets/images. Fonts in ./fonts are picked up automatically.
 set -euo pipefail
@@ -26,12 +26,12 @@ for combo in "${combos[@]}"; do
   # Inject the plugins and point the import at the repository's lib.typ.
   sed -e "s|#show: cv.with(|#show: cv.with(plugins: $plugins,|" \
       -e 's|#import "\(\.\./\)\{0,1\}lib.typ"|#import "/lib.typ"|' "$src" > "$file"
-  typst compile --root . --font-path fonts "$@" "$file" "$out/$name.png" --ppi 144
-  echo "rendered $out/$name.png"
+  typst compile --root . --font-path fonts "$@" "$file" "$out/$name.svg" --pages 1
+  echo "rendered $out/$name.svg"
 done
 
-typst compile --root . --font-path fonts "$@" examples/custom-links.typ "$out/custom-plugins.png" --ppi 144
-echo "rendered $out/custom-plugins.png"
+typst compile --root . --font-path fonts "$@" examples/custom-links.typ "$out/custom-plugins.svg" --pages 1
+echo "rendered $out/custom-plugins.svg"
 
 # The Typst Universe thumbnail: page 1 of the template as initialized (main.typ has the same content).
 if [ "$out" = "assets/images" ]; then

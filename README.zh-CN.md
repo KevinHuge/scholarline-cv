@@ -8,7 +8,7 @@ A minimal, customizable academic CV template for Typst —— 一个极简、可
 
 | 默认 | `margin-section` 插件 | 中文 |
 |---|---|---|
-| ![默认版式](assets/images/default.png) | ![左侧栏章节插件](assets/images/margin-section.png) | ![中文简历](assets/images/zh-default.png) |
+| ![默认版式](assets/images/default.svg) | ![左侧栏章节插件](assets/images/margin-section.svg) | ![中文简历](assets/images/zh-default.svg) |
 
 更多组合见[插件说明](docs/PLUGINS.zh-CN.md#效果图)。
 
