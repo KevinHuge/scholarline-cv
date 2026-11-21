@@ -10,8 +10,10 @@
 
 ```sh
 typst compile main.typ
-typst compile examples/custom-links.typ
+typst compile --root . examples/custom-links.typ
 ```
+
+当入口文件位于 `examples/` 等子目录、需要导入上一级的 `lib.typ` 时，请指定 `--root .`。
 
 ## 自定义姓名下方的链接
 
