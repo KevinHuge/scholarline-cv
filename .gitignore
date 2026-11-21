@@ -7,5 +7,5 @@ private/
 *.private.typ
 fonts/
 previews/
-!docs/images/*.png
+!assets/images/*.png
 .gallery-*/

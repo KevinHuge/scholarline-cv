@@ -8,7 +8,7 @@ Monochrome, typography-led, and quiet: Inter, a grayscale palette, small upperca
 
 | Default | `margin-section` plugin | Chinese |
 |---|---|---|
-| ![Default layout](docs/images/default.png) | ![Margin section plugin](docs/images/margin-section.png) | ![Chinese CV](docs/images/zh-default.png) |
+| ![Default layout](assets/images/default.png) | ![Margin section plugin](assets/images/margin-section.png) | ![Chinese CV](assets/images/zh-default.png) |
 
 More combinations are shown in the [plugin guide](docs/PLUGINS.md#gallery).
 
@@ -51,11 +51,11 @@ See [docs/PLUGINS.md](docs/PLUGINS.md) for plugins and recipes, and [docs/API.md
 
 ```sh
 tests/run.sh --font-path fonts   # compile-based tests
-docs/gallery/build.sh            # re-render docs/images for every plugin combination
+assets/gallery/build.sh            # re-render assets/images for every plugin combination
 ```
 
 `tests/pass/*.typ` must compile (they use `#assert`); `tests/fail/*.typ` must fail with the message on their `// expect:` line. This repository is not yet published on Typst Universe.
 
 ## License
 
-MIT. Icons are derived from [Lucide](https://lucide.dev) (ISC); see `assets/icons/LICENSE`.
+MIT. Icons are derived from [Lucide](https://lucide.dev) (ISC); see `icons/LICENSE`.

@@ -27,19 +27,19 @@ Pass plugins through `plugins:`. Omitted slots keep their defaults, and unknown 
 
 ## Gallery
 
-Every combination of the built-in plugins, rendered from `main.typ` and `examples/zh.typ`. Regenerate them with `docs/gallery/build.sh`.
+Every combination of the built-in plugins, rendered from `main.typ` and `examples/zh.typ`. Regenerate them with `assets/gallery/build.sh`.
 
 | Default | `section: margin-section` |
 |---|---|
-| ![Default](images/default.png) | ![Margin section](images/margin-section.png) |
+| ![Default](../assets/images/default.png) | ![Margin section](../assets/images/margin-section.png) |
 | **`links: underline-links`** | **`margin-section` + `underline-links`** |
-| ![Underline links](images/underline-links.png) | ![Margin section and underline links](images/margin-section-underline-links.png) |
+| ![Underline links](../assets/images/underline-links.png) | ![Margin section and underline links](../assets/images/margin-section-underline-links.png) |
 | **Chinese, default** | **Chinese, `margin-section`** |
-| ![Chinese default](images/zh-default.png) | ![Chinese margin section](images/zh-margin-section.png) |
+| ![Chinese default](../assets/images/zh-default.png) | ![Chinese margin section](../assets/images/zh-margin-section.png) |
 
 Custom plugins from `examples/custom-links.typ`: an extra icon, a custom component, A4 paper, and a left-aligned header.
 
-![Custom plugins](images/custom-plugins.png)
+![Custom plugins](../assets/images/custom-plugins.png)
 
 ## 1. Switch to a built-in alternative
 

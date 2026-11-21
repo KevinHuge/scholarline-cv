@@ -28,19 +28,19 @@ Scholarline CV 只有一条原则：**一切皆插件**（Everything is a plugin
 
 ## 效果图
 
-下面是内置插件的所有组合，由 `main.typ` 和 `examples/zh.typ` 渲染而成。重新生成请运行 `docs/gallery/build.sh`。
+下面是内置插件的所有组合，由 `main.typ` 和 `examples/zh.typ` 渲染而成。重新生成请运行 `assets/gallery/build.sh`。
 
 | 默认 | `section: margin-section` |
 |---|---|
-| ![默认](images/default.png) | ![左侧栏章节](images/margin-section.png) |
+| ![默认](../assets/images/default.png) | ![左侧栏章节](../assets/images/margin-section.png) |
 | **`links: underline-links`** | **`margin-section` + `underline-links`** |
-| ![下划线链接](images/underline-links.png) | ![左侧栏章节 + 下划线链接](images/margin-section-underline-links.png) |
+| ![下划线链接](../assets/images/underline-links.png) | ![左侧栏章节 + 下划线链接](../assets/images/margin-section-underline-links.png) |
 | **中文，默认** | **中文，`margin-section`** |
-| ![中文默认](images/zh-default.png) | ![中文左侧栏章节](images/zh-margin-section.png) |
+| ![中文默认](../assets/images/zh-default.png) | ![中文左侧栏章节](../assets/images/zh-margin-section.png) |
 
 `examples/custom-links.typ` 中的自定义插件：新增图标、自定义组件、A4 纸张和左对齐页眉。
 
-![自定义插件](images/custom-plugins.png)
+![自定义插件](../assets/images/custom-plugins.png)
 
 ## 1. 换成内置备选
 

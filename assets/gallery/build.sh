@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # Renders every built-in plugin combination of the sample CVs to PNG.
-# Usage: docs/gallery/build.sh [output-dir] [extra typst args]
-# Default output: docs/images. Fonts in ./fonts are picked up automatically.
+# Usage: assets/gallery/build.sh [output-dir] [extra typst args]
+# Default output: assets/images. Fonts in ./fonts are picked up automatically.
 set -euo pipefail
 cd "$(dirname "$0")/../.."
-out="${1:-docs/images}"
+out="${1:-assets/images}"
 shift || true
 mkdir -p "$out"
 tmp="$(mktemp -d ./.gallery-XXXXXX)"

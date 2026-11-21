@@ -8,7 +8,7 @@ A minimal, customizable academic CV template for Typst —— 一个极简、可
 
 | 默认 | `margin-section` 插件 | 中文 |
 |---|---|---|
-| ![默认版式](docs/images/default.png) | ![左侧栏章节插件](docs/images/margin-section.png) | ![中文简历](docs/images/zh-default.png) |
+| ![默认版式](assets/images/default.png) | ![左侧栏章节插件](assets/images/margin-section.png) | ![中文简历](assets/images/zh-default.png) |
 
 更多组合见[插件说明](docs/PLUGINS.zh-CN.md#效果图)。
 
@@ -54,11 +54,11 @@ typst compile --root . examples/custom-links.typ
 
 ```sh
 tests/run.sh --font-path fonts   # 编译式测试
-docs/gallery/build.sh            # 重新生成 docs/images 中所有插件组合的截图
+assets/gallery/build.sh            # 重新生成 assets/images 中所有插件组合的截图
 ```
 
 ## 隐私
 
 公开示例只包含虚构、占位信息，不含维护者的真实 CV 或个人联系方式；请勿在 Pull Request 中提交他人的私人履历。
 
-MIT. 图标基于 [Lucide](https://lucide.dev)（ISC），见 `assets/icons/LICENSE`。
+MIT. 图标基于 [Lucide](https://lucide.dev)（ISC），见 `icons/LICENSE`。

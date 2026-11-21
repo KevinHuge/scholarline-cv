@@ -43,15 +43,15 @@
 
 // SVG sources use stroke="currentColor"; it is replaced by the theme's `muted` colour.
 #let builtin-icons = (
-  scholar: read("assets/icons/scholar.svg"),
-  github: read("assets/icons/github.svg"),
-  web: read("assets/icons/web.svg"),
-  email: read("assets/icons/email.svg"),
-  linkedin: read("assets/icons/linkedin.svg"),
-  orcid: read("assets/icons/orcid.svg"),
-  phone: read("assets/icons/phone.svg"),
-  location: read("assets/icons/location.svg"),
-  link: read("assets/icons/link.svg"),
+  scholar: read("icons/scholar.svg"),
+  github: read("icons/github.svg"),
+  web: read("icons/web.svg"),
+  email: read("icons/email.svg"),
+  linkedin: read("icons/linkedin.svg"),
+  orcid: read("icons/orcid.svg"),
+  phone: read("icons/phone.svg"),
+  location: read("icons/location.svg"),
+  link: read("icons/link.svg"),
 )
 
 // Icons are 0.95em tall and shifted down by (0.95em − 0.72em) / 2, which puts their
