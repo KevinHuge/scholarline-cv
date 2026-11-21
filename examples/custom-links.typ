@@ -1,4 +1,5 @@
-// Everything is a plugin: theme overrides, a custom icon, a custom heading, and a custom component.
+// Everything is a plugin: theme overrides, the margin-grid section and underlined-link presets,
+// a custom icon, and a custom component.
 #import "../lib.typ": *
 
 // A plugin icon is just an SVG string that uses stroke="currentColor".
@@ -9,9 +10,9 @@
   subtitle: "Independent researcher",
   theme: (paper: "a4", muted: rgb("#7a7a7a"), spacing: 1.15, header-align: left),
   plugins: (
+    section: margin-section, // section labels in a left column (built-in alternative)
+    links: underline-links,  // underlined entry links instead of `label ↗` (built-in alternative)
     icons: (book: book),
-    // Wrap the default heading instead of rewriting it: uppercase, letter-spaced titles.
-    heading: title => default-heading(upper(text(tracking: 0.06em, size: 0.9em, title))),
   ),
   contacts: (
     contact("Scholar profile", "https://scholar.google.com", icon: "scholar"),
@@ -24,7 +25,7 @@
 
 // A custom component written with the same primitives as the built-in ones.
 #let talk(title: "", event: none, place: none, date: none, links: ()) = entry(
-  ([#entry-title(title)#bracket-links(links)], entry-meta(dot-join((event, place)))),
+  ([#entry-title(title)#entry-links(links)], entry-meta(dot-join((event, place)))),
   aside: (date,),
 )
 

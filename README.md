@@ -2,7 +2,7 @@
 
 A minimal, customizable academic CV template for [Typst](https://typst.app/).
 
-Monochrome, typography-led, and quiet: Inter, a grayscale palette, hairline section rules, and a left-content / right-date grid. Everything beyond a tiny core is a plugin — the header, section headings, icons, and every component can be replaced or extended with the same primitives the built-ins use.
+Monochrome, typography-led, and quiet: Inter, a grayscale palette, hairline section rules, and a left-content / right-date grid. Everything beyond a tiny core is a plugin: the header, sections, section headings, entry links, icons, and every component can be replaced or extended with the same primitives the built-ins use.
 
 **Status:** v0.1.0 prototype (unreleased). All examples are anonymous placeholders.
 
@@ -31,12 +31,13 @@ If Inter is not installed system-wide, put its TTF files in `fonts/` and add `--
     contact("Email", "mailto:you@example.com", icon: "email"),
   ),
   theme: (paper: "a4", spacing: 1.1),                     // tokens: colours, fonts, size, spacing, paper
-  plugins: (heading: title => default-heading(upper(title))), // swap or wrap any built-in part
+  plugins: (section: margin-section),                     // swap or wrap any built-in part
 )
 ```
 
 - `lang: "zh"` for a Chinese CV; bilingual CVs keep `lang: "en"` and write `section("教育经历 Education")`.
-- Write your own components with `entry`, `entry-title`, `entry-meta`, `dot-join`, `bracket-links`, and `cv-icon`.
+- Built-in plugin presets: `margin-section` (section labels in a left column) and `underline-links` (underlined entry links instead of `paper ↗`).
+- Write your own components with `entry`, `entry-title`, `entry-meta`, `entry-links`, `dot-join`, and `cv-icon`.
 
 See [docs/API.md](docs/API.md) for the full API.
 

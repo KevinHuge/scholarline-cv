@@ -1,6 +1,6 @@
 # API — v0.1.0 (unreleased)
 
-Scholarline CV has a minimal core and treats everything else as a plugin. `cv()` sets up the page and stores the theme; the header, section headings, and icon table can be replaced, and every built-in component is written with the public primitives listed below.
+Scholarline CV has a minimal core and treats everything else as a plugin. `cv()` sets up the page and stores the theme; the header, sections, section headings, entry links, and icon table can be replaced, and every built-in component is written with the public primitives listed below.
 
 ## `cv`
 
@@ -39,19 +39,29 @@ Pass only the keys you want to change; the rest come from `default-theme`. Unkno
 | Plugin | Default | Signature |
 |---|---|---|
 | `header` | `default-header` | `(name, subtitle, contacts) => content` |
-| `heading` | `default-heading` | `(title) => content` (used by `section`) |
+| `section` | `default-section` | `(title, body) => content` — built-in alternative: `margin-section` |
+| `heading` | `default-heading` | `(title) => content` — the title used by `default-section` |
+| `links` | `default-links` | `(links) => content` for entry links — built-in alternative: `underline-links` |
 | `icons` | built-in table | dictionary of name → SVG string; adds icons or overrides built-in ones |
 
-Unknown plugin names are an error. Wrap a default plugin instead of rewriting it:
+Built-in alternatives:
+
+- `margin-section` puts small uppercase section labels in a left margin column with a hairline between sections. Headings stay real headings, so PDF bookmarks still work.
+- `default-links` renders entry links as muted `paper ↗`; `underline-links` renders them as muted labels with a soft underline.
+
+Unknown plugin names are an error. Pick a preset, or wrap a default instead of rewriting it (for example `heading: title => default-heading([§ #title])` with the default section):
 
 ```typst
 #show: cv.with(
   plugins: (
-    heading: title => default-heading(upper(title)),
+    section: margin-section,
+    links: underline-links,
     icons: (book: read("book.svg")),   // the SVG should use stroke="currentColor"
   ),
 )
 ```
+
+PDF has no hover state, so clickable text carries a static cue instead: contact links get a soft underline, and entry links get `↗` or a soft underline.
 
 ## `contact(label, url, icon: none)`
 
@@ -67,7 +77,7 @@ All fields except the first are optional; omitted fields leave no gap.
 - `publication(title:, authors:, venue:, links:, note:)` — `links` is an array of `(label:, url:)`
 - `project(name:, role:, tech:, dates:, links:, body:)`
 - `award(name:, date:)`
-- `skill-line(label:, items:)`
+- `skill-line(label:, items:)` — muted label column and content column
 
 Every field accepts ordinary Typst content, including formatted author lists and inline links.
 
@@ -79,15 +89,16 @@ Every field accepts ordinary Typst content, including formatted author lists and
 | `entry-title(body)` | Semibold entry title |
 | `entry-meta(body)` | Muted metadata text; `none` stays `none` |
 | `dot-join(parts)` | Joins the non-`none` parts with ` · ` |
-| `bracket-links(links)` | Muted `[label]` links |
+| `entry-links(links)` | Entry links styled by the `links` plugin; nothing when `links` is empty |
+| `section-label(title)` | Small uppercase, letter-spaced section label |
 | `cv-icon(name)` | Tinted, centred icon from the icon table |
 | `cv-theme()` | The resolved theme dictionary (call inside `context`) |
 
 A custom component looks exactly like a built-in one:
 
 ```typst
-#let talk(title: "", event: none, date: none) = entry(
-  (entry-title(title), entry-meta(event)),
+#let talk(title: "", event: none, date: none, links: ()) = entry(
+  ([#entry-title(title)#entry-links(links)], entry-meta(event)),
   aside: (date,),
 )
 ```

@@ -2,7 +2,7 @@
 
 A minimal, customizable academic CV template for Typst —— 一个极简、可定制的 Typst 学术简历模板。适合研究生申请、博士申请、科研实习和学术 CV。
 
-单色、以排版为核心：Inter 字体、灰阶配色、发丝线分节、左内容右时间的网格。核心极小，其余一切都是插件（Everything is a plugin）：页眉、章节标题、图标和所有组件都能替换或扩展，并且使用与内置组件相同的公开原语。
+单色、以排版为核心：Inter 字体、灰阶配色、发丝线分节、左内容右时间的网格。核心极小，其余一切都是插件（Everything is a plugin）：页眉、章节、章节标题、条目链接、图标和所有组件都能替换或扩展，并且使用与内置组件相同的公开原语。
 
 > v0.1.0 原型。所有公开示例均为匿名占位信息，尚未发布至 Typst Universe。
 
@@ -32,14 +32,15 @@ typst compile --root . examples/custom-links.typ
     contact("邮箱", "mailto:you@example.com", icon: "email"),
   ),
   theme: (paper: "a4", spacing: 1.1),       // 主题令牌：颜色、字体、字号、间距、纸张
-  plugins: (heading: title => default-heading(title)), // 插件：替换或包装页眉、章节标题、图标
+  plugins: (section: margin-section),        // 插件：替换或包装页眉、章节、链接、图标
 )
 ```
 
 - 每条联系信息的显示名称、URL、图标、顺序互相独立，也可传入任意 Typst 内容作为图标。
 - 中文简历使用 `lang: "zh"`；中英双语简历保持默认 `lang: "en"`，直接写 `section("教育经历 Education")` 即可。
 - 内置组件：`section`、`education`、`experience`、`publication`、`project`、`award`、`skill-line`。
-- 自定义组件：用 `entry`、`entry-title`、`entry-meta`、`dot-join`、`bracket-links`、`cv-icon` 编写，效果与内置组件一致，示例见 `examples/custom-links.typ`。
+- 内置插件预设：`margin-section`（章节名在左侧栏）和 `underline-links`（条目链接用下划线代替 `paper ↗`）。
+- 自定义组件：用 `entry`、`entry-title`、`entry-meta`、`entry-links`、`dot-join`、`cv-icon` 编写，效果与内置组件一致，示例见 `examples/custom-links.typ`。
 
 完整参数参见 [API 文档](docs/API.md)。
 
