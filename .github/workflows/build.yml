@@ -12,12 +12,9 @@ jobs:
           typst-version: 0.13.1
       - name: Install fonts
         run: |
+          # Inter ships in fonts/; Noto Sans CJK SC comes from the distribution.
           sudo apt-get update
           sudo apt-get install -y fonts-noto-cjk
-          mkdir -p fonts
-          curl -sSL -o /tmp/inter.zip https://github.com/rsms/inter/releases/download/v4.1/Inter-4.1.zip
-          unzip -o -j -q /tmp/inter.zip 'extras/ttf/Inter-Regular.ttf' 'extras/ttf/Inter-Medium.ttf' \
-            'extras/ttf/Inter-SemiBold.ttf' 'extras/ttf/Inter-Bold.ttf' 'extras/ttf/InterDisplay-Bold.ttf' -d fonts
           typst fonts --font-path fonts | grep -qx "Inter"
           typst fonts --font-path fonts | grep -qx "Inter Display"
           typst fonts --font-path fonts | grep -q "Noto Sans CJK SC"

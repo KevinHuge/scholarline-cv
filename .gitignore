@@ -5,7 +5,14 @@
 .typst/
 private/
 *.private.typ
-fonts/
+# Only Inter (OFL-1.1) is shared; other local fonts such as Noto CJK stay untracked.
+fonts/*
+!fonts/Inter-Regular.ttf
+!fonts/Inter-Medium.ttf
+!fonts/Inter-SemiBold.ttf
+!fonts/Inter-Bold.ttf
+!fonts/InterDisplay-Bold.ttf
+!fonts/OFL.txt
 previews/
 .gallery-*/
 !/thumbnail.png
