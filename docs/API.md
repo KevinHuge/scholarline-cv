@@ -106,4 +106,4 @@ A custom component looks exactly like a built-in one:
 )
 ```
 
-See `examples/custom-links.typ` for a complete example.
+See `examples/custom-links.typ` for a complete example, and [PLUGINS.md](PLUGINS.md) for plugin recipes.

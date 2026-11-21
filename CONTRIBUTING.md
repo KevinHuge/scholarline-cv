@@ -6,7 +6,7 @@ Scholarline CV welcomes issues and pull requests.
 2. Keep the public examples anonymous and avoid personal contact information.
 3. Keep the core minimal: prefer a plugin or a component built on the public primitives over a new `cv()` option. Add a test for any new feature.
 4. Run `tests/run.sh --font-path fonts` and compile `main.typ` and `examples/*.typ` with `--root .`.
-5. For visual changes, provide screenshots or a PDF for review.
+5. For visual changes, run `docs/gallery/build.sh` and commit the updated `docs/images/`.
 
 Priorities: readable APIs, accessible PDF text, stable pagination, user-controlled contact links and academic publication formatting.
 

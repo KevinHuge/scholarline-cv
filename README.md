@@ -6,6 +6,12 @@ Monochrome, typography-led, and quiet: Inter, a grayscale palette, small upperca
 
 **Status:** v0.1.0 prototype (unreleased). All examples are anonymous placeholders.
 
+| Default | `margin-section` plugin | Chinese |
+|---|---|---|
+| ![Default layout](docs/images/default.png) | ![Margin section plugin](docs/images/margin-section.png) | ![Chinese CV](docs/images/zh-default.png) |
+
+More combinations are shown in the [plugin guide](docs/PLUGINS.md#gallery).
+
 ## Quick start
 
 Install Typst 0.13 or newer plus two free fonts: [Inter](https://rsms.me/inter/) and [Noto Sans CJK SC](https://github.com/notofonts/noto-cjk). Noto Sans CJK SC renders Chinese, and its Latin glyphs stand in if Inter is missing. In the Typst web app, Noto Sans CJK SC is built in, so upload only Inter's TTF files (including `InterDisplay-Bold.ttf`, used for the name) to your project. Prefer system fonts? Use `theme: (font: "Helvetica Neue", cjk-font: "PingFang SC")`.
@@ -39,12 +45,13 @@ If the fonts are not installed system-wide, put their files in `fonts/` and add 
 - Built-in plugin presets: `margin-section` (section labels in a left column) and `underline-links` (underlined entry links instead of `paper ↗`).
 - Write your own components with `entry`, `entry-title`, `entry-meta`, `entry-links`, `dot-join`, and `cv-icon`.
 
-See [docs/API.md](docs/API.md) for the full API.
+See [docs/PLUGINS.md](docs/PLUGINS.md) for plugins and recipes, and [docs/API.md](docs/API.md) for the full API.
 
 ## Development
 
 ```sh
-tests/run.sh --font-path fonts
+tests/run.sh --font-path fonts   # compile-based tests
+docs/gallery/build.sh            # re-render docs/images for every plugin combination
 ```
 
 `tests/pass/*.typ` must compile (they use `#assert`); `tests/fail/*.typ` must fail with the message on their `// expect:` line. This repository is not yet published on Typst Universe.

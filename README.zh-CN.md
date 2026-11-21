@@ -6,6 +6,12 @@ A minimal, customizable academic CV template for Typst —— 一个极简、可
 
 > v0.1.0 原型。所有公开示例均为匿名占位信息，尚未发布至 Typst Universe。
 
+| 默认 | `margin-section` 插件 | 中文 |
+|---|---|---|
+| ![默认版式](docs/images/default.png) | ![左侧栏章节插件](docs/images/margin-section.png) | ![中文简历](docs/images/zh-default.png) |
+
+更多组合见[插件说明](docs/PLUGINS.zh-CN.md#效果图)。
+
 ## 快速开始
 
 安装 Typst 0.13 或更新版本，以及两款免费字体：[Inter](https://rsms.me/inter/) 和 [Noto Sans CJK SC](https://github.com/notofonts/noto-cjk)。Noto Sans CJK SC 负责中文；没有 Inter 时，它自带的拉丁字形也能顶上。Typst 网页版已内置 Noto Sans CJK SC，只需把 Inter 的 TTF（包括姓名使用的 `InterDisplay-Bold.ttf`）上传到项目。想用系统字体，可以写 `theme: (font: "Helvetica Neue", cjk-font: "PingFang SC")`。然后在仓库根目录运行：
@@ -42,7 +48,14 @@ typst compile --root . examples/custom-links.typ
 - 内置插件预设：`margin-section`（章节名在左侧栏）和 `underline-links`（条目链接用下划线代替 `paper ↗`）。
 - 自定义组件：用 `entry`、`entry-title`、`entry-meta`、`entry-links`、`dot-join`、`cv-icon` 编写，效果与内置组件一致，示例见 `examples/custom-links.typ`。
 
-完整参数参见 [API 文档](docs/API.md)。
+插件用法和示例见[插件说明](docs/PLUGINS.zh-CN.md)，完整参数见 [API 文档](docs/API.md)。
+
+## 开发
+
+```sh
+tests/run.sh --font-path fonts   # 编译式测试
+docs/gallery/build.sh            # 重新生成 docs/images 中所有插件组合的截图
+```
 
 ## 隐私
 

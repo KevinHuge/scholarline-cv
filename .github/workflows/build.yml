@@ -30,7 +30,9 @@ jobs:
             typst compile --root . --font-path fonts "$f" "previews/$(basename "$f" .typ).pdf" 2>&1 | tee /tmp/typst.log
             if grep -q "unknown font family" /tmp/typst.log; then echo "::error::missing font in $f"; exit 1; fi
           done
-      - name: Upload PDF previews
+      - name: Render plugin gallery
+        run: docs/gallery/build.sh previews/gallery
+      - name: Upload previews
         uses: actions/upload-artifact@v4
         with:
           name: scholarline-cv-previews
