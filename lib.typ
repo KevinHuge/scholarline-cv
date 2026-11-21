@@ -1,7 +1,8 @@
 // Scholarline CV — a minimal, customizable academic CV template for Typst. MIT licensed.
 //
 // Everything is a plugin: the core `cv()` only sets up the page and stores the theme.
-// The header, section headings, and icon table are replaceable plugins, and every
+// The header, sections, section headings, entry links, and icon table are replaceable
+// plugins, and every
 // built-in component is written with the same public primitives you can use yourself.
 //
 // Sections of this file: Theme · Icons · Primitives · Layout · Components.
@@ -56,7 +57,13 @@
 
 // ── Primitives ─────────────────────────────────────────────────────────────────
 
-#let cv-state = state("scholarline-cv", (theme: resolve-theme((:)), icons: builtin-icons))
+// Plugin slots hold `auto` (use the built-in default) or a function; see `cv()`.
+#let cv-state = state("scholarline-cv", (
+  theme: resolve-theme((:)),
+  icons: builtin-icons,
+  section: auto,
+  links: auto,
+))
 
 /// The resolved theme dictionary. Call inside `context`.
 #let cv-theme() = cv-state.get().theme
@@ -79,16 +86,45 @@
 
 /// Muted metadata text (dates, roles, authors). `none` stays `none`.
 #let entry-meta(body) = if body != none {
-  context text(size: cv-theme().size * 0.94, fill: cv-theme().muted, body)
+  context text(size: cv-theme().size * 0.94, fill: cv-theme().muted, number-width: "tabular", body)
 }
 
 /// Joins the non-`none` parts with " · "; returns `none` when nothing is left.
 #let dot-join(parts) = parts.filter(p => p != none).join[ · ]
 
-/// Muted `[label]` links from an array of `(label:, url:)` dictionaries.
-#let bracket-links(links) = for item in links {
-  h(0.4em)
-  link(item.url, entry-meta[\[#item.label\]])
+/// Small uppercase, letter-spaced label used for section titles.
+/// Chinese has no capitals, so `lang: "zh"` gets a slightly larger, tighter label instead.
+#let section-label(title) = context {
+  let zh = text.lang == "zh"
+  text(
+    size: cv-theme().size * if zh { 0.96 } else { 0.86 },
+    weight: "semibold",
+    tracking: if zh { 0.04em } else { 0.09em },
+    upper(title),
+  )
+}
+
+/// Soft underline used for clickable text; its colour follows the theme's `muted`.
+#let soft-underline(body) = context underline(stroke: 0.6pt + cv-theme().muted.lighten(55%), offset: 3pt, body)
+
+/// Default links plugin: muted `label ↗` links (L3).
+#let default-links(links) = for item in links {
+  h(0.6em)
+  link(item.url, entry-meta[#item.label#h(0.12em)↗])
+}
+
+/// Alternative links plugin: muted labels with a soft underline (L2).
+#let underline-links(links) = for item in links {
+  h(0.6em)
+  link(item.url, soft-underline(entry-meta(item.label)))
+}
+
+/// Entry links from an array of `(label:, url:)` dictionaries, styled by the `links` plugin.
+#let entry-links(links) = if links.len() > 0 {
+  context {
+    let plugin = cv-state.get().links
+    if plugin == auto { default-links(links) } else { plugin(links) }
+  }
 }
 
 /// The shared two-column entry: `lines` on the left, muted `aside` rows on the right,
@@ -106,7 +142,7 @@
     grid(
       columns: (1fr, auto),
       column-gutter: 12pt,
-      row-gutter: 4pt * s,
+      row-gutter: 5pt * s,
       align: (start + horizon, end + horizon),
       ..cells,
     )
@@ -124,14 +160,14 @@
     cv-icon(icon)
     h(0.35em)
   }
-  link(item.url, underline(stroke: 0.5pt + cv-theme().ink, offset: 2.5pt, item.label))
+  link(item.url, soft-underline(item.label))
 })
 
 /// Default header plugin: centred name, muted subtitle, and a `·`-separated contact row.
 #let default-header(name, subtitle, contacts) = context {
   let t = cv-theme()
   let s = t.spacing
-  let rows = (text(size: t.size * 2.3, weight: "bold", name),)
+  let rows = (text(size: t.size * 2.4, weight: "bold", tracking: -0.02em, name),)
   if subtitle != none {
     rows += (6pt * s, text(fill: t.muted, subtitle))
   }
@@ -145,19 +181,50 @@
   })
 }
 
-/// Default section-heading plugin: title over a full-width hairline.
+/// Default heading plugin: a small uppercase label over a full-width hairline.
 #let default-heading(title) = context {
   let t = cv-theme()
   let s = t.spacing
-  block(sticky: true, above: 18pt * s, below: 10pt * s, width: 100%, stack(
+  block(sticky: true, above: 22pt * s, below: 10pt * s, width: 100%, stack(
     dir: ttb,
     spacing: 6pt * s,
-    text(size: t.size * 1.2, weight: "semibold", title),
+    section-label(title),
     line(length: 100%, stroke: 0.5pt + t.rule),
   ))
 }
 
-#let default-plugins = (header: auto, heading: auto, icons: (:))
+/// Default section plugin: a level-2 heading (styled by the `heading` plugin) followed by the body.
+#let default-section(title, body) = {
+  heading(level: 2, outlined: false, title)
+  body
+}
+
+#let section-counter = counter("scholarline-cv-section")
+
+/// Alternative section plugin: label in a left margin column, content on the right,
+/// and a hairline between sections. The heading stays a real heading for PDF bookmarks.
+#let margin-section(title, body) = {
+  section-counter.step()
+  context {
+    let t = cv-theme()
+    let s = t.spacing
+    // The header's own rule already separates it from the first section.
+    if section-counter.get().first() > 1 {
+      block(above: 16pt * s, below: 0pt, line(length: 100%, stroke: 0.5pt + t.rule))
+    }
+    block(above: 0pt, below: 0pt, grid(
+      columns: (20%, 1fr),
+      column-gutter: 14pt,
+      pad(top: 11.5pt * s, {
+        show heading: it => section-label(it.body)
+        heading(level: 2, outlined: false, title)
+      }),
+      pad(top: 10pt * s, body),
+    ))
+  }
+}
+
+#let default-plugins = (header: auto, heading: auto, section: auto, links: auto, icons: (:))
 
 #let cv(
   name: "Your Name",
@@ -191,19 +258,20 @@
     region: if lang == "zh" { "cn" } else { none },
     cjk-latin-spacing: auto,
   )
-  set par(leading: if lang == "zh" { 0.8em } else { 0.7em }, spacing: 4pt * s)
+  set par(leading: if lang == "zh" { 0.85em } else { 0.75em }, spacing: 4pt * s)
   set block(spacing: 4pt * s)
-  set list(marker: text(fill: t.muted)[•], indent: 0pt, body-indent: 0.45em, spacing: 4pt * s)
+  set list(marker: text(fill: t.muted)[•], indent: 0pt, body-indent: 0.5em, spacing: 5pt * s)
   show heading.where(level: 2): it => heading-fn(it.body)
 
-  cv-state.update((theme: t, icons: builtin-icons + p.icons))
+  cv-state.update((theme: t, icons: builtin-icons + p.icons, section: p.section, links: p.links))
   header(name, subtitle, contacts)
   body
 }
 
-#let section(title, body) = {
-  heading(level: 2, outlined: false, title)
-  body
+/// A CV section, laid out by the `section` plugin.
+#let section(title, body) = context {
+  let plugin = cv-state.get().section
+  if plugin == auto { default-section(title, body) } else { plugin(title, body) }
 }
 
 // ── Components ─────────────────────────────────────────────────────────────────
@@ -222,13 +290,13 @@
 )
 
 #let publication(title: "", authors: none, venue: none, links: (), note: none) = entry((
-  [#entry-title(title)#bracket-links(links)],
+  [#entry-title(title)#entry-links(links)],
   entry-meta(dot-join((authors, venue))),
   entry-meta(note),
 ))
 
 #let project(name: "", role: none, tech: none, dates: none, links: (), body: none) = entry(
-  ([#entry-title(name)#bracket-links(links)], entry-meta(dot-join((role, tech)))),
+  ([#entry-title(name)#entry-links(links)], entry-meta(dot-join((role, tech)))),
   aside: (dates,),
   body: body,
 )
@@ -236,8 +304,11 @@
 #let award(name: "", date: none) = entry((name,), aside: (date,))
 
 #let skill-line(label: "", items: []) = context {
-  let colon = if text.lang == "zh" { "：" } else { ": " }
-  block(above: 6pt * cv-theme().spacing, below: 6pt * cv-theme().spacing)[
-    #text(weight: "semibold")[#label#colon]#items
-  ]
+  let s = cv-theme().spacing
+  block(above: 6pt * s, below: 6pt * s, grid(
+    columns: (10.5em, 1fr),
+    column-gutter: 12pt,
+    text(fill: cv-theme().muted, label),
+    items,
+  ))
 }
