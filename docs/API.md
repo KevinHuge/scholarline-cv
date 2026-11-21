@@ -15,6 +15,8 @@ Scholarline CV has a minimal core and treats everything else as a plugin. `cv()`
 )
 ```
 
+Typst warns once for every listed font family that is not installed, so the default font lists are deliberately short. Both defaults are free: [Inter](https://rsms.me/inter/) and [Noto Sans CJK SC](https://github.com/notofonts/noto-cjk). In the Typst web app, Noto Sans CJK SC is built in; upload Inter's TTF files to the project. To use system fonts instead, override them, e.g. `theme: (font: "Helvetica Neue", cjk-font: "PingFang SC")` on macOS.
+
 `lang: "zh"` sets Chinese line spacing and punctuation and uses a full-width colon in `skill-line`. Chinese text also renders under `lang: "en"`, which is the right choice for bilingual CVs. For example, write `section("教育经历 Education")`.
 
 ## Theme
@@ -26,8 +28,8 @@ Pass only the keys you want to change; the rest come from `default-theme`. Unkno
 | `ink` | `rgb("#151515")` | Name, headings, body text, contact links |
 | `muted` | `rgb("#666666")` | Subtitle, dates, locations, authors, roles, `[links]`, icons |
 | `rule` | `rgb("#E6E6E6")` | Hairlines under the header and section titles |
-| `font` | `("Inter", "Helvetica Neue", "Helvetica", "Arial")` | Latin font fallback list |
-| `cjk-font` | `("Noto Sans SC", "Noto Sans CJK SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei")` | Chinese font fallback list |
+| `font` | `("Inter",)` | Latin font(s) |
+| `cjk-font` | `("Noto Sans CJK SC",)` | Chinese font(s); its Latin glyphs also stand in for a missing `font` |
 | `size` | `9.6pt` | Body size; all other sizes scale from it |
 | `spacing` | `1.0` | Multiplier for every vertical gap |
 | `paper` | `"us-letter"` | Any Typst paper name, e.g. `"a4"` |

@@ -22,11 +22,12 @@ jobs:
           typst fonts --font-path fonts | grep -q "Noto Sans CJK SC"
       - name: Run tests
         run: tests/run.sh --font-path fonts
-      - name: Compile examples
+      - name: Compile examples (fail on missing fonts)
         run: |
           mkdir -p previews
           for f in main.typ examples/*.typ; do
-            typst compile --root . --font-path fonts "$f" "previews/$(basename "$f" .typ).pdf"
+            typst compile --root . --font-path fonts "$f" "previews/$(basename "$f" .typ).pdf" 2>&1 | tee /tmp/typst.log
+            if grep -q "unknown font family" /tmp/typst.log; then echo "::error::missing font in $f"; exit 1; fi
           done
       - name: Upload PDF previews
         uses: actions/upload-artifact@v4

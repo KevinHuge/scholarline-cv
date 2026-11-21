@@ -8,7 +8,7 @@ Monochrome, typography-led, and quiet: Inter, a grayscale palette, hairline sect
 
 ## Quick start
 
-Install Typst 0.13 or newer and the [Inter](https://rsms.me/inter/) font (without it, the template falls back to Helvetica Neue / Arial). For Chinese, install Noto Sans SC or use PingFang SC on macOS.
+Install Typst 0.13 or newer plus two free fonts: [Inter](https://rsms.me/inter/) and [Noto Sans CJK SC](https://github.com/notofonts/noto-cjk). Noto Sans CJK SC renders Chinese, and its Latin glyphs stand in if Inter is missing. In the Typst web app, Noto Sans CJK SC is built in, so upload only Inter's TTF files to your project. Prefer system fonts? Use `theme: (font: "Helvetica Neue", cjk-font: "PingFang SC")`.
 
 ```sh
 typst compile main.typ
@@ -16,7 +16,7 @@ typst compile --root . examples/zh.typ
 typst compile --root . examples/custom-links.typ
 ```
 
-If Inter is not installed system-wide, put its TTF files in `fonts/` and add `--font-path fonts`.
+If the fonts are not installed system-wide, put their files in `fonts/` and add `--font-path fonts`.
 
 ## Customize
 

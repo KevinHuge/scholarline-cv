@@ -13,8 +13,10 @@
   ink: rgb("#151515"),
   muted: rgb("#666666"),
   rule: rgb("#E6E6E6"),
-  font: ("Inter", "Helvetica Neue", "Helvetica", "Arial"),
-  cjk-font: ("Noto Sans SC", "Noto Sans CJK SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei"),
+  // Typst warns once for every listed family that is not installed, so the defaults stay short:
+  // Inter for Latin, Noto Sans CJK SC for Chinese (its Latin glyphs also cover a missing Inter).
+  font: ("Inter",),
+  cjk-font: ("Noto Sans CJK SC",),
   size: 9.6pt,
   spacing: 1.0,
   paper: "us-letter",

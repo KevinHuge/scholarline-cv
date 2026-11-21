@@ -8,7 +8,7 @@ A minimal, customizable academic CV template for Typst —— 一个极简、可
 
 ## 快速开始
 
-安装 Typst 0.13 或更新版本，以及 [Inter](https://rsms.me/inter/) 字体（未安装时回退到 Helvetica Neue / Arial）。中文请安装 Noto Sans SC，macOS 可直接使用苹方。然后在仓库根目录运行：
+安装 Typst 0.13 或更新版本，以及两款免费字体：[Inter](https://rsms.me/inter/) 和 [Noto Sans CJK SC](https://github.com/notofonts/noto-cjk)。Noto Sans CJK SC 负责中文；没有 Inter 时，它自带的拉丁字形也能顶上。Typst 网页版已内置 Noto Sans CJK SC，只需把 Inter 的 TTF 上传到项目。想用系统字体，可以写 `theme: (font: "Helvetica Neue", cjk-font: "PingFang SC")`。然后在仓库根目录运行：
 
 ```sh
 typst compile main.typ
@@ -16,7 +16,7 @@ typst compile --root . examples/zh.typ
 typst compile --root . examples/custom-links.typ
 ```
 
-如果没有在系统中安装 Inter，可以把 TTF 文件放进 `fonts/`，编译时加 `--font-path fonts`。入口文件位于 `examples/` 等子目录时，请指定 `--root .`。
+如果字体没有装在系统里，可以把字体文件放进 `fonts/`，编译时加 `--font-path fonts`。入口文件位于 `examples/` 等子目录时，请指定 `--root .`。
 
 ## 自定义
 

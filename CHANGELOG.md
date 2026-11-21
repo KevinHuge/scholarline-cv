@@ -9,7 +9,7 @@
 - `theme:` dictionary for colours, fonts, size, spacing, paper, margin, and header alignment
 - Centred header with icon-led, softly underlined contact links separated by `·`
 - Redrawn Lucide-style icon set (including GitHub and ORCID), tinted by the theme and centred on the text line
-- Chinese and bilingual support via `lang: "zh"` and CJK font fallback
+- Chinese and bilingual support via `lang: "zh"`; short default font lists (Inter + Noto Sans CJK SC) so compiles stay free of missing-font warnings
 - Components for education (with `details`), experience (role · advisor), publications (with `venue`), projects, awards, and skills
 - Compile-based tests and a CI workflow that installs fonts and uploads PDF previews
 - Anonymous English, Chinese, and plugin examples
