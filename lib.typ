@@ -17,6 +17,8 @@
   // Inter for Latin, Noto Sans CJK SC for Chinese (its Latin glyphs also cover a missing Inter).
   font: ("Inter",),
   cjk-font: ("Noto Sans CJK SC",),
+  // Inter Display is Inter's large-size cut; the name falls back to `font` without it.
+  display-font: ("Inter Display",),
   size: 9.6pt,
   spacing: 1.0,
   paper: "us-letter",
@@ -130,17 +132,21 @@
 }
 
 /// The shared two-column entry: `lines` on the left, muted `aside` rows on the right,
-/// then an optional `body`. `none` rows are dropped without leaving a gap.
+/// then an optional `body`. `none` rows are dropped without
+/// leaving a gap, and single-line entries (awards, short items) use a tighter rhythm.
 #let entry(lines, aside: (), body: none) = context {
-  let s = cv-theme().spacing
+  let t = cv-theme()
+  let s = t.spacing
   let lines = lines.filter(x => x != none)
   let aside = aside.filter(x => x != none).map(entry-meta)
+  let single = lines.len() <= 1 and aside.len() <= 1 and body == none
+  let gap = if single { 6pt * s } else { 10pt * s }
   let cells = ()
   for i in range(calc.max(lines.len(), aside.len())) {
     cells.push(lines.at(i, default: []))
     cells.push(aside.at(i, default: []))
   }
-  block(above: 10pt * s, below: 10pt * s, width: 100%, {
+  block(above: gap, below: gap, width: 100%, {
     grid(
       columns: (1fr, auto),
       column-gutter: 12pt,
@@ -148,7 +154,8 @@
       align: (start + horizon, end + horizon),
       ..cells,
     )
-    if body != none { body }
+    // A little extra air separates the who/when block from the description.
+    if body != none { block(above: 8pt * s, body) }
   })
 }
 
@@ -165,17 +172,17 @@
   link(item.url, soft-underline(item.label))
 })
 
-/// Default header plugin: centred name, muted subtitle, and a `·`-separated contact row.
+/// Default header plugin: centred name, muted subtitle, and an icon-led contact row.
 #let default-header(name, subtitle, contacts) = context {
   let t = cv-theme()
   let s = t.spacing
-  let rows = (text(size: t.size * 2.4, weight: "bold", tracking: -0.02em, name),)
+  let rows = (text(font: t.display-font + t.font + t.cjk-font, size: t.size * 2.4, weight: "bold", tracking: -0.02em, name),)
   if subtitle != none {
     rows += (6pt * s, text(fill: t.muted, subtitle))
   }
   if contacts.len() > 0 {
-    let sep = h(0.6em) + text(fill: t.muted)[·] + h(0.6em)
-    rows += (10pt * s, contacts.map(contact-item).join(sep))
+    // Icons already lead each item, so plain space separates them instead of `·`.
+    rows += (10pt * s, contacts.map(contact-item).join(h(1.3em)))
   }
   block(width: 100%, above: 0pt, below: 0pt, {
     set align(t.header-align)
@@ -260,9 +267,11 @@
     region: if lang == "zh" { "cn" } else { none },
     cjk-latin-spacing: auto,
   )
-  set par(leading: if lang == "zh" { 0.85em } else { 0.75em }, spacing: 4pt * s)
+  let leading = if lang == "zh" { 0.85em } else { 0.75em }
+  set par(leading: leading, spacing: 4pt * s)
   set block(spacing: 4pt * s)
-  set list(marker: text(fill: t.muted)[•], indent: 0pt, body-indent: 0.5em, spacing: 5pt * s)
+  // Items sit slightly further apart than wrapped lines, so a long bullet never blends into the next.
+  set list(marker: text(fill: t.muted)[•], indent: 0pt, body-indent: 0.5em, spacing: leading + 2pt * s)
   show heading.where(level: 2): it => heading-fn(it.body)
 
   cv-state.update((theme: t, icons: builtin-icons + p.icons, section: p.section, links: p.links))

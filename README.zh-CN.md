@@ -2,13 +2,13 @@
 
 A minimal, customizable academic CV template for Typst —— 一个极简、可定制的 Typst 学术简历模板。适合研究生申请、博士申请、科研实习和学术 CV。
 
-单色、以排版为核心：Inter 字体、灰阶配色、发丝线分节、左内容右时间的网格。核心极小，其余一切都是插件（Everything is a plugin）：页眉、章节、章节标题、条目链接、图标和所有组件都能替换或扩展，并且使用与内置组件相同的公开原语。
+单色、以排版为核心：Inter 字体、灰阶配色、小号大写章节标签加发丝线、左内容右时间的网格。核心极小，其余一切都是插件（Everything is a plugin）：页眉、章节、章节标题、条目链接、图标和所有组件都能替换或扩展，并且使用与内置组件相同的公开原语。
 
 > v0.1.0 原型。所有公开示例均为匿名占位信息，尚未发布至 Typst Universe。
 
 ## 快速开始
 
-安装 Typst 0.13 或更新版本，以及两款免费字体：[Inter](https://rsms.me/inter/) 和 [Noto Sans CJK SC](https://github.com/notofonts/noto-cjk)。Noto Sans CJK SC 负责中文；没有 Inter 时，它自带的拉丁字形也能顶上。Typst 网页版已内置 Noto Sans CJK SC，只需把 Inter 的 TTF 上传到项目。想用系统字体，可以写 `theme: (font: "Helvetica Neue", cjk-font: "PingFang SC")`。然后在仓库根目录运行：
+安装 Typst 0.13 或更新版本，以及两款免费字体：[Inter](https://rsms.me/inter/) 和 [Noto Sans CJK SC](https://github.com/notofonts/noto-cjk)。Noto Sans CJK SC 负责中文；没有 Inter 时，它自带的拉丁字形也能顶上。Typst 网页版已内置 Noto Sans CJK SC，只需把 Inter 的 TTF（包括姓名使用的 `InterDisplay-Bold.ttf`）上传到项目。想用系统字体，可以写 `theme: (font: "Helvetica Neue", cjk-font: "PingFang SC")`。然后在仓库根目录运行：
 
 ```sh
 typst compile main.typ

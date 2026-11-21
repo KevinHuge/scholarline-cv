@@ -15,7 +15,7 @@ Scholarline CV has a minimal core and treats everything else as a plugin. `cv()`
 )
 ```
 
-Typst warns once for every listed font family that is not installed, so the default font lists are deliberately short. Both defaults are free: [Inter](https://rsms.me/inter/) and [Noto Sans CJK SC](https://github.com/notofonts/noto-cjk). In the Typst web app, Noto Sans CJK SC is built in; upload Inter's TTF files to the project. To use system fonts instead, override them, e.g. `theme: (font: "Helvetica Neue", cjk-font: "PingFang SC")` on macOS.
+Typst warns once for every listed font family that is not installed, so the default font lists are deliberately short. All defaults are free: [Inter](https://rsms.me/inter/) (including its Inter Display cut, used for the name) and [Noto Sans CJK SC](https://github.com/notofonts/noto-cjk). In the Typst web app, Noto Sans CJK SC is built in; upload Inter's TTF files and `InterDisplay-Bold.ttf` to the project. To use system fonts instead, override them, e.g. `theme: (font: "Helvetica Neue", cjk-font: "PingFang SC")` on macOS.
 
 `lang: "zh"` sets Chinese line spacing and punctuation and uses a full-width colon in `skill-line`. Chinese text also renders under `lang: "en"`, which is the right choice for bilingual CVs. For example, write `section("教育经历 Education")`.
 
@@ -27,9 +27,10 @@ Pass only the keys you want to change; the rest come from `default-theme`. Unkno
 |---|---|---|
 | `ink` | `rgb("#151515")` | Name, headings, body text, contact links |
 | `muted` | `rgb("#666666")` | Subtitle, dates, locations, authors, roles, `[links]`, icons |
-| `rule` | `rgb("#E6E6E6")` | Hairlines under the header and section titles |
+| `rule` | `rgb("#E6E6E6")` | Hairlines under the header and section labels (between sections with `margin-section`) |
 | `font` | `("Inter",)` | Latin font(s) |
 | `cjk-font` | `("Noto Sans CJK SC",)` | Chinese font(s); its Latin glyphs also stand in for a missing `font` |
+| `display-font` | `("Inter Display",)` | Font for the name; falls back to `font` |
 | `size` | `9.6pt` | Body size; all other sizes scale from it |
 | `spacing` | `1.0` | Multiplier for every vertical gap |
 | `paper` | `"us-letter"` | Any Typst paper name, e.g. `"a4"` |
@@ -42,7 +43,7 @@ Pass only the keys you want to change; the rest come from `default-theme`. Unkno
 |---|---|---|
 | `header` | `default-header` | `(name, subtitle, contacts) => content` |
 | `section` | `default-section` | `(title, body) => content` — built-in alternative: `margin-section` |
-| `heading` | `default-heading` | `(title) => content` — the title used by `default-section` |
+| `heading` | `default-heading` | `(title) => content` — the small uppercase label and hairline used by `default-section` |
 | `links` | `default-links` | `(links) => content` for entry links — built-in alternative: `underline-links` |
 | `icons` | built-in table | dictionary of name → SVG string; adds icons or overrides built-in ones |
 
@@ -78,7 +79,7 @@ All fields except the first are optional; omitted fields leave no gap.
 - `experience(institution:, role:, advisor:, dates:, location:, body:)` — `role` and `advisor` share one line
 - `publication(title:, authors:, venue:, links:, note:)` — `links` is an array of `(label:, url:)`
 - `project(name:, role:, tech:, dates:, links:, body:)`
-- `award(name:, date:)`
+- `award(name:, date:)` — single-line entries share a tighter rhythm
 - `skill-line(label:, items:)` — muted label column and content column
 
 Every field accepts ordinary Typst content, including formatted author lists and inline links.

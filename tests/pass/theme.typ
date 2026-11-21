@@ -6,6 +6,7 @@
 #assert.eq(base.rule, rgb("#E6E6E6"))
 #assert.eq(base.margin, (x: 0.7in, y: 0.6in))
 #assert("accent" not in default-theme)
+#assert.eq(base.display-font, ("Inter Display",))
 
 #let custom = resolve-theme((ink: rgb("#000000"), paper: "a4"))
 #assert.eq(custom.ink, rgb("#000000"))
