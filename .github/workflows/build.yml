@@ -12,3 +12,12 @@ jobs:
           typst-version: 0.13.1
       - run: typst compile main.typ /tmp/scholarline-example.pdf
       - run: typst compile --root . examples/custom-links.typ /tmp/scholarline-links.pdf
+      - name: Upload compiled PDF previews
+        uses: actions/upload-artifact@v4
+        with:
+          name: scholarline-cv-previews
+          path: |
+            /tmp/scholarline-example.pdf
+            /tmp/scholarline-links.pdf
+          if-no-files-found: error
+          retention-days: 14
