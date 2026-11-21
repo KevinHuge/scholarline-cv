@@ -4,8 +4,8 @@ Scholarline CV welcomes issues and pull requests.
 
 1. Discuss major API changes in an issue.
 2. Keep the public examples anonymous and avoid personal contact information.
-3. Minimize dependencies; add a focused example for any new feature.
-4. Run `typst compile main.typ` and `typst compile --root . examples/custom-links.typ`.
+3. Keep the core minimal: prefer a plugin or a component built on the public primitives over a new `cv()` option. Add a test for any new feature.
+4. Run `tests/run.sh --font-path fonts` and compile `main.typ` and `examples/*.typ` with `--root .`.
 5. For visual changes, provide screenshots or a PDF for review.
 
 Priorities: readable APIs, accessible PDF text, stable pagination, user-controlled contact links and academic publication formatting.

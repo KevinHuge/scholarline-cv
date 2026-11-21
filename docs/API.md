@@ -1,33 +1,95 @@
-# API — prototype v0.1.0
+# API — v0.1.0 (unreleased)
+
+Scholarline CV has a minimal core and treats everything else as a plugin. `cv()` sets up the page and stores the theme; the header, section headings, and icon table can be replaced, and every built-in component is written with the public primitives listed below.
 
 ## `cv`
-
-Use `#show: cv.with(...)` with `name`, optional `subtitle`, `contacts`, `accent`, `font`, `font-size`, `paper`, `margin`, and `header-align`.
 
 ```typst
 #show: cv.with(
   name: "Your Name",
-  subtitle: "Academic researcher",
-  contacts: (contact("Google Scholar", "https://scholar.google.com", icon: "scholar"),),
-  accent: rgb("#26428b"),
-  font: "New Computer Modern",
-  font-size: 9.4pt,
-  paper: "us-letter",
-  header-align: center,
+  subtitle: "Computer Science Researcher · Example University",
+  contacts: (contact("GitHub", "https://github.com", icon: "github"),),
+  lang: "en",              // "en" or "zh"
+  theme: (spacing: 1.1, paper: "a4"),
+  plugins: (:),
+)
+```
+
+`lang: "zh"` sets Chinese line spacing and punctuation and uses a full-width colon in `skill-line`. Chinese text also renders under `lang: "en"`, which is the right choice for bilingual CVs. For example, write `section("教育经历 Education")`.
+
+## Theme
+
+Pass only the keys you want to change; the rest come from `default-theme`. Unknown keys are an error.
+
+| Key | Default | Meaning |
+|---|---|---|
+| `ink` | `rgb("#151515")` | Name, headings, body text, contact links |
+| `muted` | `rgb("#666666")` | Subtitle, dates, locations, authors, roles, `[links]`, icons |
+| `rule` | `rgb("#E6E6E6")` | Hairlines under the header and section titles |
+| `font` | `("Inter", "Helvetica Neue", "Helvetica", "Arial")` | Latin font fallback list |
+| `cjk-font` | `("Noto Sans SC", "Noto Sans CJK SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei")` | Chinese font fallback list |
+| `size` | `9.6pt` | Body size; all other sizes scale from it |
+| `spacing` | `1.0` | Multiplier for every vertical gap |
+| `paper` | `"us-letter"` | Any Typst paper name, e.g. `"a4"` |
+| `margin` | `auto` | `auto` picks a default for the paper; otherwise any Typst margin value |
+| `header-align` | `center` | `center` or `left` |
+
+## Plugins
+
+| Plugin | Default | Signature |
+|---|---|---|
+| `header` | `default-header` | `(name, subtitle, contacts) => content` |
+| `heading` | `default-heading` | `(title) => content` (used by `section`) |
+| `icons` | built-in table | dictionary of name → SVG string; adds icons or overrides built-in ones |
+
+Unknown plugin names are an error. Wrap a default plugin instead of rewriting it:
+
+```typst
+#show: cv.with(
+  plugins: (
+    heading: title => default-heading(upper(title)),
+    icons: (book: read("book.svg")),   // the SVG should use stroke="currentColor"
+  ),
 )
 ```
 
 ## `contact(label, url, icon: none)`
 
-Labels, URLs, icons, and order are independent. Built-in icon names: `scholar`, `github`, `web`, `email`, `linkedin`, `orcid`, `phone`, `location`, `link`. Other Typst content can be an icon, e.g. `icon: image("my-icon.svg", height: 9pt)`.
+Labels, URLs, icons, and order are independent. Built-in icons: `scholar`, `github`, `web`, `email`, `linkedin`, `orcid`, `phone`, `location`, `link`. Icons from the icon table are tinted with `muted` and centred on the text line. Any other Typst content can be used as an icon as-is. Unknown icon names are an error.
 
-## Other helpers
+## Components
 
-- `section(title)[body]` — section heading
-- `education(institution:, degree:, dates:, location:, body:)`
-- `experience(institution:, role:, dates:, location:, advisor:, body:)`
-- `publication(title:, authors:, links:, note:)` — links is an array of `(label:, url:)` dictionaries
+All fields except the first are optional; omitted fields leave no gap.
+
+- `section(title)[body]`
+- `education(institution:, degree:, dates:, location:, details:, body:)` — `details` is a muted line such as `"GPA: 3.90/4.00 · Dean's List"`
+- `experience(institution:, role:, advisor:, dates:, location:, body:)` — `role` and `advisor` share one line
+- `publication(title:, authors:, venue:, links:, note:)` — `links` is an array of `(label:, url:)`
+- `project(name:, role:, tech:, dates:, links:, body:)`
 - `award(name:, date:)`
 - `skill-line(label:, items:)`
 
-These components accept ordinary Typst content, including formatted authors and embedded clickable links.
+Every field accepts ordinary Typst content, including formatted author lists and inline links.
+
+## Primitives for your own components
+
+| Primitive | Purpose |
+|---|---|
+| `entry(lines, aside: (), body: none)` | Two-column entry: `lines` on the left, muted `aside` rows on the right, then `body`. `none` rows are dropped. |
+| `entry-title(body)` | Semibold entry title |
+| `entry-meta(body)` | Muted metadata text; `none` stays `none` |
+| `dot-join(parts)` | Joins the non-`none` parts with ` · ` |
+| `bracket-links(links)` | Muted `[label]` links |
+| `cv-icon(name)` | Tinted, centred icon from the icon table |
+| `cv-theme()` | The resolved theme dictionary (call inside `context`) |
+
+A custom component looks exactly like a built-in one:
+
+```typst
+#let talk(title: "", event: none, date: none) = entry(
+  (entry-title(title), entry-meta(event)),
+  aside: (date,),
+)
+```
+
+See `examples/custom-links.typ` for a complete example.
