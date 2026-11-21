@@ -1,58 +1,67 @@
 // Anonymous sample CV. Replace every placeholder with your own information.
 #import "lib.typ": *
 
-#let contacts = (
-  contact("Google Scholar", "https://scholar.google.com", icon: "scholar"),
-  contact("GitHub", "https://github.com", icon: "github"),
-  contact("Homepage", "https://example.com", icon: "web"),
-  contact("Email", "mailto:you@example.com", icon: "email"),
-)
-
 #show: cv.with(
   name: "Your Name",
-  subtitle: "Computer Science · University Name",
-  contacts: contacts,
+  subtitle: "Computer Science Researcher · Example University",
+  contacts: (
+    contact("Google Scholar", "https://scholar.google.com", icon: "scholar"),
+    contact("GitHub", "https://github.com", icon: "github"),
+    contact("Homepage", "https://example.com", icon: "web"),
+    contact("Email", "mailto:you@example.com", icon: "email"),
+  ),
 )
 
 #section("Education")[
   #education(
-    institution: "University Name",
+    institution: "Example University",
     degree: "B.S. in Computer Science",
-    dates: "2023–2027",
+    dates: "2023 – 2027",
     location: "City, Country",
-    body: [- *Relevant courses:* Machine Learning, Algorithms, Linear Algebra],
+    details: "GPA: 3.90/4.00 · Dean's List",
+    body: [- Selected coursework: Machine Learning, Algorithms, Computer Vision],
   )
 ]
 
 #section("Publications")[
   #publication(
-    title: "A Research Paper Title",
-    authors: [Your Name, Coauthor One, Coauthor Two.],
-    links: (
-      (label: "Paper", url: "https://example.com/paper"),
-      (label: "Code", url: "https://github.com"),
-    ),
+    title: "Adaptive Planning for Multimodal Research Agents",
+    authors: [Your Name, Alex Researcher, Jamie Example],
+    venue: "Preprint, 2026",
+    links: ((label: "paper", url: "https://example.com/paper"), (label: "code", url: "https://github.com")),
   )
 ]
 
 #section("Research Experience")[
   #experience(
-    institution: "Research Lab / University",
+    institution: "Laboratory for Intelligent Systems",
     role: "Research Intern",
-    dates: "2025–Present",
-    advisor: [Professor Name],
+    advisor: "Prof. Example Advisor",
+    dates: "May 2026 – Present",
     body: [
-      - Describe a problem you addressed and your contribution.
-      - Show evidence of impact, outcomes, or evaluation.
+      - Designed a modular evaluation framework for multimodal agents.
+      - Analyzed efficiency–accuracy trade-offs across tasks.
     ],
   )
 ]
 
-#section("Awards")[
-  #award(name: "Award Name", date: "2025")
+#section("Selected Projects")[
+  #project(
+    name: "Open Research Toolkit",
+    role: "Maintainer",
+    tech: "Python, PyTorch",
+    dates: "2025 – Present",
+    links: ((label: "link", url: "https://github.com"),),
+  )
+]
+
+#section("Awards & Honors")[
+  #award(name: "Undergraduate Research Fellowship", date: "2026")
+  #award(name: "University Merit Scholarship", date: "2025")
 ]
 
 #section("Skills")[
-  #skill-line(label: "Programming", items: [Python, Java])
-  #skill-line(label: "Tools", items: [PyTorch, Git, Linux])
+  #skill-line(label: "Programming", items: [Python, Java, C++])
+  #skill-line(label: "Frameworks & Tools", items: [PyTorch, Transformers, Git, Linux, Typst])
+  #skill-line(label: "Languages", items: [English, Mandarin])
 ]

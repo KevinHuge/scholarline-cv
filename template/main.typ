@@ -1,45 +1,67 @@
 // Typst Universe sample, to be activated after publication.
 #import "@preview/scholarline-cv:0.1.0": *
 
-#let contacts = (
-  contact("Google Scholar", "https://scholar.google.com", icon: "scholar"),
-  contact("GitHub", "https://github.com", icon: "github"),
-  contact("Homepage", "https://example.com", icon: "web"),
-  contact("Email", "mailto:you@example.com", icon: "email"),
-)
-
 #show: cv.with(
   name: "Your Name",
-  subtitle: "Your academic / professional headline",
-  contacts: contacts,
+  subtitle: "Computer Science Researcher · Example University",
+  contacts: (
+    contact("Google Scholar", "https://scholar.google.com", icon: "scholar"),
+    contact("GitHub", "https://github.com", icon: "github"),
+    contact("Homepage", "https://example.com", icon: "web"),
+    contact("Email", "mailto:you@example.com", icon: "email"),
+  ),
 )
 
 #section("Education")[
   #education(
-    institution: "University Name",
+    institution: "Example University",
     degree: "B.S. in Computer Science",
-    dates: "2023–2027",
+    dates: "2023 – 2027",
     location: "City, Country",
+    details: "GPA: 3.90/4.00 · Dean's List",
+    body: [- Selected coursework: Machine Learning, Algorithms, Computer Vision],
   )
 ]
 
 #section("Publications")[
   #publication(
-    title: "Your Paper Title",
-    authors: [Your Name, Coauthor One.],
-    links: ((label: "Paper", url: "https://example.com/paper"),),
+    title: "Adaptive Planning for Multimodal Research Agents",
+    authors: [Your Name, Alex Researcher, Jamie Example],
+    venue: "Preprint, 2026",
+    links: ((label: "paper", url: "https://example.com/paper"), (label: "code", url: "https://github.com")),
   )
 ]
 
 #section("Research Experience")[
   #experience(
-    institution: "Research Institution",
+    institution: "Laboratory for Intelligent Systems",
     role: "Research Intern",
-    dates: "2025–Present",
-    body: [- A concise achievement or contribution.],
+    advisor: "Prof. Example Advisor",
+    dates: "May 2026 – Present",
+    body: [
+      - Designed a modular evaluation framework for multimodal agents.
+      - Analyzed efficiency–accuracy trade-offs across tasks.
+    ],
   )
 ]
 
+#section("Selected Projects")[
+  #project(
+    name: "Open Research Toolkit",
+    role: "Maintainer",
+    tech: "Python, PyTorch",
+    dates: "2025 – Present",
+    links: ((label: "link", url: "https://github.com"),),
+  )
+]
+
+#section("Awards & Honors")[
+  #award(name: "Undergraduate Research Fellowship", date: "2026")
+  #award(name: "University Merit Scholarship", date: "2025")
+]
+
 #section("Skills")[
-  #skill-line(label: "Programming", items: [Python, Java])
+  #skill-line(label: "Programming", items: [Python, Java, C++])
+  #skill-line(label: "Frameworks & Tools", items: [PyTorch, Transformers, Git, Linux, Typst])
+  #skill-line(label: "Languages", items: [English, Mandarin])
 ]
