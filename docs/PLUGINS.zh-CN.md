@@ -2,6 +2,8 @@
 
 [English](PLUGINS.md)
 
+> 下面的代码从本仓库的 `lib.typ` 导入。通过 Typst Universe 使用时，请改成 `#import "@preview/scholarline-cv:0.1.0": *`。
+
 Scholarline CV 只有一条原则：**一切皆插件**（Everything is a plugin）。核心 `cv()` 只负责页面设置和保存主题，页面上能看到的每个部分都是插件。你可以保留它、换成内置的备选、在它外面包一层，或者整个替换。内置组件（`education`、`publication` 等）也只用公开的原语编写，所以你自己写的组件和内置组件看起来完全一致。
 
 ## 一览

@@ -1,4 +1,6 @@
 // Anonymous sample CV. Replace every placeholder with your own information.
+// Fonts: for the intended look, add Inter (https://rsms.me/inter/) to your project or system,
+// including InterDisplay-Bold.ttf for the name. Without it, Noto Sans CJK SC is used.
 #import "lib.typ": *
 
 #show: cv.with(

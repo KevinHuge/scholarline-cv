@@ -4,7 +4,7 @@ A minimal, customizable academic CV template for Typst —— 一个极简、可
 
 单色、以排版为核心：Inter 字体、灰阶配色、小号大写章节标签加发丝线、左内容右时间的网格。核心极小，其余一切都是插件（Everything is a plugin）：页眉、章节、章节标题、条目链接、图标和所有组件都能替换或扩展，并且使用与内置组件相同的公开原语。
 
-> v0.1.0 原型。所有公开示例均为匿名占位信息，尚未发布至 Typst Universe。
+> v0.1.0。所有公开示例均为匿名占位信息。
 
 | 默认 | `margin-section` 插件 | 中文 |
 |---|---|---|
@@ -14,7 +14,24 @@ A minimal, customizable academic CV template for Typst —— 一个极简、可
 
 ## 快速开始
 
-安装 Typst 0.13 或更新版本，以及两款免费字体：[Inter](https://rsms.me/inter/) 和 [Noto Sans CJK SC](https://github.com/notofonts/noto-cjk)。Noto Sans CJK SC 负责中文；没有 Inter 时，它自带的拉丁字形也能顶上。Typst 网页版已内置 Noto Sans CJK SC，只需把 Inter 的 TTF（包括姓名使用的 `InterDisplay-Bold.ttf`）上传到项目。想用系统字体，可以写 `theme: (font: "Helvetica Neue", cjk-font: "PingFang SC")`。然后在仓库根目录运行：
+**Typst 网页版**：选择 *Start from template*，搜索 `scholarline-cv`。
+
+**命令行**（Typst 0.13 或更新版本）：
+
+```sh
+typst init @preview/scholarline-cv:0.1.0 my-cv
+cd my-cv && typst compile main.typ
+```
+
+**已有文档**：`#import "@preview/scholarline-cv:0.1.0": *`
+
+### 字体
+
+Typst 包不能自带字体，需要自行安装两款免费字体：[Inter](https://rsms.me/inter/) 和 [Noto Sans CJK SC](https://github.com/notofonts/noto-cjk)。Noto Sans CJK SC 负责中文；没有 Inter 时，它自带的拉丁字形也能顶上。Typst 网页版已内置 Noto Sans CJK SC，只需把 Inter 的 TTF（包括姓名使用的 `InterDisplay-Bold.ttf`）上传到项目。想用系统字体，可以写 `theme: (font: "Helvetica Neue", cjk-font: "PingFang SC")`。
+
+如果字体没有装在系统里，可以把字体文件放进 `fonts/` 文件夹，编译时加 `--font-path fonts`。
+
+### 从本仓库编译
 
 ```sh
 typst compile main.typ
@@ -22,12 +39,12 @@ typst compile --root . examples/zh.typ
 typst compile --root . examples/custom-links.typ
 ```
 
-如果字体没有装在系统里，可以把字体文件放进 `fonts/`，编译时加 `--font-path fonts`。入口文件位于 `examples/` 等子目录时，请指定 `--root .`。
+入口文件位于 `examples/` 等子目录时，请指定 `--root .`。
 
 ## 自定义
 
 ```typst
-#import "lib.typ": *
+#import "@preview/scholarline-cv:0.1.0": *
 
 #show: cv.with(
   name: "你的名字",

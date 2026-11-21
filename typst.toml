@@ -2,17 +2,16 @@
 name = "scholarline-cv"
 version = "0.1.0"
 entrypoint = "lib.typ"
-authors = ["Scholarline CV contributors"]
+authors = ["KevinHuge <@KevinHuge>"]
 license = "MIT"
-description = "A minimal, customizable academic CV template for Typst."
+description = "Minimal, monochrome academic CV with plugins."
 keywords = ["cv", "resume", "academic", "publications", "research", "minimal", "chinese"]
 categories = ["cv"]
 compiler = "0.13.0"
 repository = "https://github.com/KevinHuge/scholarline-cv"
-exclude = ["tests", "docs", "assets", ".github"]
+exclude = ["/tests", "/docs", "/assets", "/examples", "/main.typ", "/CONTRIBUTING.md", "/.github"]
 
 [template]
 path = "template"
 entrypoint = "main.typ"
-# Before Typst Universe submission, generate thumbnail.png and uncomment:
-# thumbnail = "thumbnail.png"
+thumbnail = "thumbnail.png"

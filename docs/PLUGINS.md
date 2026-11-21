@@ -2,6 +2,8 @@
 
 [中文](PLUGINS.zh-CN.md)
 
+> Snippets below import `lib.typ` from a clone of this repository. With Typst Universe, use `#import "@preview/scholarline-cv:0.1.0": *` instead.
+
 Scholarline CV follows one rule: **everything is a plugin**. The core, `cv()`, only sets up the page and stores the theme. Every visible part is a plugin. You can keep it, switch to a built-in alternative, wrap it, or replace it. The built-in components (`education`, `publication`, …) are written with the same public primitives you get, so your own components look exactly like the built-in ones.
 
 ## At a glance

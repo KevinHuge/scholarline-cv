@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.0 — Initial prototype (unreleased)
+## 0.1.0 — Initial release
 
 - Minimal, customizable academic CV template for Typst with a monochrome editorial design: Inter typography, grayscale palette (`#151515` / `#666666` / `#E6E6E6`), hairline section rules, and an asymmetric content / date grid
 - Everything is a plugin: replaceable `header`, `section`, `heading`, and `links` plugins, an extensible icon table, and public primitives (`entry`, `entry-title`, `entry-meta`, `entry-links`, `dot-join`, `section-label`, `cv-icon`, `cv-theme`) that the built-in components also use

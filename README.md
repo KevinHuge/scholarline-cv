@@ -4,7 +4,7 @@ A minimal, customizable academic CV template for [Typst](https://typst.app/).
 
 Monochrome, typography-led, and quiet: Inter, a grayscale palette, small uppercase section labels over hairlines, and a left-content / right-date grid. Everything beyond a tiny core is a plugin: the header, sections, section headings, entry links, icons, and every component can be replaced or extended with the same primitives the built-ins use.
 
-**Status:** v0.1.0 prototype (unreleased). All examples are anonymous placeholders.
+**Status:** v0.1.0. All examples are anonymous placeholders.
 
 | Default | `margin-section` plugin | Chinese |
 |---|---|---|
@@ -14,7 +14,24 @@ More combinations are shown in the [plugin guide](docs/PLUGINS.md#gallery).
 
 ## Quick start
 
-Install Typst 0.13 or newer plus two free fonts: [Inter](https://rsms.me/inter/) and [Noto Sans CJK SC](https://github.com/notofonts/noto-cjk). Noto Sans CJK SC renders Chinese, and its Latin glyphs stand in if Inter is missing. In the Typst web app, Noto Sans CJK SC is built in, so upload only Inter's TTF files (including `InterDisplay-Bold.ttf`, used for the name) to your project. Prefer system fonts? Use `theme: (font: "Helvetica Neue", cjk-font: "PingFang SC")`.
+**Typst web app:** choose *Start from template* and search for `scholarline-cv`.
+
+**Command line** (Typst 0.13 or newer):
+
+```sh
+typst init @preview/scholarline-cv:0.1.0 my-cv
+cd my-cv && typst compile main.typ
+```
+
+**Existing document:** `#import "@preview/scholarline-cv:0.1.0": *`
+
+### Fonts
+
+Typst packages cannot ship fonts, so install two free fonts yourself: [Inter](https://rsms.me/inter/) and [Noto Sans CJK SC](https://github.com/notofonts/noto-cjk). Noto Sans CJK SC renders Chinese, and its Latin glyphs stand in if Inter is missing. In the Typst web app, Noto Sans CJK SC is built in, so upload only Inter's TTF files (including `InterDisplay-Bold.ttf`, used for the name) to your project. Prefer system fonts? Use `theme: (font: "Helvetica Neue", cjk-font: "PingFang SC")`.
+
+If the fonts are not installed system-wide, put their files in a `fonts/` folder and add `--font-path fonts`.
+
+### From this repository
 
 ```sh
 typst compile main.typ
@@ -22,12 +39,10 @@ typst compile --root . examples/zh.typ
 typst compile --root . examples/custom-links.typ
 ```
 
-If the fonts are not installed system-wide, put their files in `fonts/` and add `--font-path fonts`.
-
 ## Customize
 
 ```typst
-#import "lib.typ": *
+#import "@preview/scholarline-cv:0.1.0": *
 
 #show: cv.with(
   name: "Your Name",
@@ -54,7 +69,7 @@ tests/run.sh --font-path fonts   # compile-based tests
 assets/gallery/build.sh            # re-render assets/images for every plugin combination
 ```
 
-`tests/pass/*.typ` must compile (they use `#assert`); `tests/fail/*.typ` must fail with the message on their `// expect:` line. This repository is not yet published on Typst Universe.
+`tests/pass/*.typ` must compile (they use `#assert`); `tests/fail/*.typ` must fail with the message on their `// expect:` line.
 
 ## License
 

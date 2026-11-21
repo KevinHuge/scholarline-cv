@@ -32,3 +32,9 @@ done
 
 typst compile --root . --font-path fonts "$@" examples/custom-links.typ "$out/custom-plugins.png" --ppi 144
 echo "rendered $out/custom-plugins.png"
+
+# The Typst Universe thumbnail: page 1 of the template as initialized (main.typ has the same content).
+if [ "$out" = "assets/images" ]; then
+  typst compile --root . --font-path fonts "$@" main.typ thumbnail.png --pages 1 --ppi 250
+  echo "rendered thumbnail.png"
+fi
