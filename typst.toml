@@ -4,11 +4,12 @@ version = "0.1.0"
 entrypoint = "lib.typ"
 authors = ["Scholarline CV contributors"]
 license = "MIT"
-description = "A clean academic CV with fully customizable contact links."
-keywords = ["cv", "resume", "academic", "publications", "research"]
+description = "A minimal, customizable academic CV template for Typst."
+keywords = ["cv", "resume", "academic", "publications", "research", "minimal", "chinese"]
 categories = ["cv"]
 compiler = "0.13.0"
 repository = "https://github.com/KevinHuge/scholarline-cv"
+exclude = ["tests", "docs", ".github"]
 
 [template]
 path = "template"
