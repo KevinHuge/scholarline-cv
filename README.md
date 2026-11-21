@@ -73,4 +73,6 @@ assets/gallery/build.sh            # re-render assets/images for every plugin co
 
 ## License
 
-MIT. Icons are derived from [Lucide](https://lucide.dev) (ISC); see `icons/LICENSE`.
+- `template/` (the files `typst init` copies into your project) is licensed under [MIT-0](https://spdx.org/licenses/MIT-0.html), so your CV needs no attribution.
+- `icons/` is derived from [Lucide](https://lucide.dev) and licensed under ISC, except `orcid.svg`; see `icons/LICENSE`.
+- Everything else is licensed under MIT; see `LICENSE`.

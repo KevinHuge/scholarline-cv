@@ -78,4 +78,8 @@ assets/gallery/build.sh            # 重新生成 assets/images 中所有插件�
 
 公开示例只包含虚构、占位信息，不含维护者的真实 CV 或个人联系方式；请勿在 Pull Request 中提交他人的私人履历。
 
-MIT. 图标基于 [Lucide](https://lucide.dev)（ISC），见 `icons/LICENSE`。
+## 许可证
+
+- `template/`（`typst init` 复制到你项目里的文件）采用 [MIT-0](https://spdx.org/licenses/MIT-0.html)，用它写出的简历无需署名。
+- `icons/` 基于 [Lucide](https://lucide.dev)，采用 ISC 许可（`orcid.svg` 除外），见 `icons/LICENSE`。
+- 其余文件采用 MIT 许可，见 `LICENSE`。
