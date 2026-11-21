@@ -1,0 +1,7 @@
+*.pdf
+*.png
+*.webp
+.DS_Store
+.typst/
+private/
+*.private.typ

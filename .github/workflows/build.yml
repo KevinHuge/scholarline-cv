@@ -1,0 +1,14 @@
+name: Build anonymous CV examples
+on:
+  push:
+  pull_request:
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: typst-community/setup-typst@v4
+        with:
+          typst-version: 0.13.1
+      - run: typst compile main.typ /tmp/scholarline-example.pdf
+      - run: typst compile examples/custom-links.typ /tmp/scholarline-links.pdf

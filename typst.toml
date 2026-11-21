@@ -1,0 +1,17 @@
+[package]
+name = "scholarline-cv"
+version = "0.1.0"
+entrypoint = "lib.typ"
+authors = ["Scholarline CV contributors"]
+license = "MIT"
+description = "A clean academic CV with fully customizable contact links."
+keywords = ["cv", "resume", "academic", "publications", "research"]
+categories = ["cv"]
+compiler = "0.13.0"
+repository = "https://github.com/KevinHuge/scholarline-cv"
+
+[template]
+path = "template"
+entrypoint = "main.typ"
+# Before Typst Universe submission, generate thumbnail.png and uncomment:
+# thumbnail = "thumbnail.png"
